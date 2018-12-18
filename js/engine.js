@@ -117,6 +117,7 @@ var Engine = (function(global) {
             numRows = 6,
             numCols = 5,
             row, col;
+            console.log('in the render');
 
         // Before drawing, clear existing canvas
         ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -146,9 +147,9 @@ var Engine = (function(global) {
      * on your enemy and player entities within app.js
      */
     function renderEntities() {
-        /* Loop through all of the objects within the allEnemies array and call
-         * the render function you have defined.
-         */
+         // Loop through all of the objects within the allEnemies array and call
+         // * the render function you have defined.
+         
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
