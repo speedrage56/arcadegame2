@@ -6,6 +6,8 @@ const Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.x;
+    this.y; 
 };
 
 // Update the enemy's position, required method for game
@@ -14,6 +16,9 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if(this.x<=606){
+        this.x += 101;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -27,19 +32,34 @@ Enemy.prototype.render = function() {
 
 function Player(){
     this.player = 'images/char-boy.png';
+    this.x = 209;
+    this.y = 404;
 }
 
 Player.prototype.update = function(){
-    
+
 }
 
 Player.prototype.render = function(){
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.player), this.x, this.y);
 
 }
 
-Player.prototype.handleInput = function(){
-
+Player.prototype.handleInput = function(evtObj){
+    switch (evtObj) {
+        case 'left': 
+            this.x -= 83;
+            break;
+        case 'right':
+            this.x += 83;
+            break;
+        case 'up' :
+            this.y += 101;
+            break;
+        case 'down' :
+            this.y -= 101;
+            break;
+    }
 };
 
 
@@ -47,6 +67,11 @@ Player.prototype.handleInput = function(){
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
+let enemy1 = new Enemy();
+let enemy2 = new Enemy();
+let enemy3 = new Enemy();
+let player = new Player();
+const allEnemies = [enemy1, enemy2, enemy3];
 
 
 // This listens for key presses and sends the keys to your
