@@ -37,7 +37,7 @@ function Player(){
 }
 
 Player.prototype.update = function(){
-
+    this.handleInput();
 }
 
 Player.prototype.render = function(){
@@ -53,13 +53,15 @@ Player.prototype.handleInput = function(evtObj){
         case 'right':
             this.x += 83;
             break;
-        case 'up' :
+        case 'down' :
             this.y += 101;
             break;
-        case 'down' :
+        case 'up' :
             this.y -= 101;
             break;
     }
+        // console.log(`x is ${this.x} and y is ${this.y}`);
+
 };
 
 
