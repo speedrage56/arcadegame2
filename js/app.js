@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-const Enemy = function(x,y) {
+const Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -8,6 +8,7 @@ const Enemy = function(x,y) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y; 
+    this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
@@ -17,9 +18,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    this.x += 101 * dt;
+    this.x += this.speed * dt;
     if(this.x > 505){
-        this.x = 0;
+        this.x = -50;
     }
     // console.log(`In enemy update loop`);
 
@@ -73,9 +74,9 @@ Player.prototype.handleInput = function(evtObj){
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-let enemy1 = new Enemy();
-let enemy2 = new Enemy();
-let enemy3 = new Enemy();
+let enemy1 = new Enemy(101, 60, 101);
+let enemy2 = new Enemy(202, 150, 150);
+let enemy3 = new Enemy(303, 225, 190);
 let player = new Player();
 const allEnemies = [enemy1, enemy2, enemy3];
 
