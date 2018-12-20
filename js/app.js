@@ -1,13 +1,13 @@
 // Enemies our player must avoid
-const Enemy = function() {
+const Enemy = function(x,y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x;
-    this.y; 
+    this.x = x;
+    this.y = y; 
 };
 
 // Update the enemy's position, required method for game
@@ -16,9 +16,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if(this.x<=606){
-        this.x += 101;
+
+    this.x += 101 * dt;
+    if(this.x > 505){
+        this.x = 0;
     }
+    // console.log(`In enemy update loop`);
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -33,11 +37,11 @@ Enemy.prototype.render = function() {
 function Player(){
     this.player = 'images/char-boy.png';
     this.x = 209;
-    this.y = 404;
+    this.y = 405;
 }
 
 Player.prototype.update = function(){
-    this.handleInput();
+    // console.log(`player x is ${this.x} and player y is ${this.y}`);
 }
 
 Player.prototype.render = function(){
@@ -48,16 +52,16 @@ Player.prototype.render = function(){
 Player.prototype.handleInput = function(evtObj){
     switch (evtObj) {
         case 'left': 
-            this.x -= 83;
+            this.x -= 101;
             break;
         case 'right':
-            this.x += 83;
+            this.x += 101;
             break;
         case 'down' :
-            this.y += 101;
+            this.y += 83;
             break;
         case 'up' :
-            this.y -= 101;
+            this.y -= 83;
             break;
     }
         // console.log(`x is ${this.x} and y is ${this.y}`);
