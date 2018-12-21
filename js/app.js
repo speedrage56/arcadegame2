@@ -43,6 +43,7 @@ function Player(){
 
 Player.prototype.update = function(){
     // console.log(`player x is ${this.x} and player y is ${this.y}`);
+    if(this.y === -10){ console.log('Congrats!!');}
 }
 
 Player.prototype.render = function(){
@@ -53,22 +54,35 @@ Player.prototype.render = function(){
 Player.prototype.handleInput = function(evtObj){
     switch (evtObj) {
         case 'left': 
-            this.x -= 101;
+            if(this.x != 7) {this.x -= 101;}
             break;
         case 'right':
-            this.x += 101;
+            if(this.x != 411) {this.x += 101;}
             break;
         case 'down' :
-            this.y += 83;
+            if(this.y != 405) {this.y += 83;}
             break;
         case 'up' :
-            this.y -= 83;
+            if(this.y != -10) {this.y -= 83;}
             break;
     }
         // console.log(`x is ${this.x} and y is ${this.y}`);
 
 };
 
+let checkCollisions = () => {
+    // console.log('In checkCollisions');
+ // console.log(`this.y is ${enemy2.y} and player.y is ${player.y}`);
+ allEnemies.forEach(enemy => {
+        // console.log(`enemy.y is ${enemy.y} and player.y is ${player.y}`);
+        if(player.y <= enemy.y + 42 &&
+            player.y >= enemy.y - 42 &&
+            player.x <= enemy.x + 50 &&
+            player.x >= enemy.x - 50){
+        player.x = 209;
+        player.y = 405;    
+        console.log(`Collision!!`);
+ }})}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
