@@ -1,5 +1,6 @@
 // Enemies our player must avoid
-const Enemy = function(x,y,speed) {
+class Enemy {
+    constructor(x,y,speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -9,11 +10,11 @@ const Enemy = function(x,y,speed) {
     this.x = x;
     this.y = y; 
     this.speed = speed;
-};
+    }
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+    update(dt){
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -24,34 +25,35 @@ Enemy.prototype.update = function(dt) {
     }
     // console.log(`In enemy update loop`);
 
-};
+    }
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+    render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+}};
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 
-function Player(){
+class Player{
+    constructor(x,y){
     this.player = 'images/char-boy.png';
     this.x = 209;
     this.y = 405;
 }
 
-Player.prototype.update = function(){
+update(){
     // console.log(`player x is ${this.x} and player y is ${this.y}`);
     if(this.y === -10){ console.log('Congrats!!');}
 }
 
-Player.prototype.render = function(){
+render(){
     ctx.drawImage(Resources.get(this.player), this.x, this.y);
 
 }
 
-Player.prototype.handleInput = function(evtObj){
+handleInput(evtObj){
     switch (evtObj) {
         case 'left': 
             if(this.x != 7) {this.x -= 101;}
@@ -68,7 +70,7 @@ Player.prototype.handleInput = function(evtObj){
     }
         // console.log(`x is ${this.x} and y is ${this.y}`);
 
-};
+}};
 
 let checkCollisions = () => {
     // console.log('In checkCollisions');
@@ -88,10 +90,10 @@ let checkCollisions = () => {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-let enemy1 = new Enemy(101, 60, 101);
-let enemy2 = new Enemy(202, 150, 150);
-let enemy3 = new Enemy(303, 225, 190);
-let player = new Player();
+const enemy1 = new Enemy(101, 60, 101);
+const enemy2 = new Enemy(202, 150, 150);
+const enemy3 = new Enemy(303, 225, 190);
+const player = new Player();
 const allEnemies = [enemy1, enemy2, enemy3];
 
 
