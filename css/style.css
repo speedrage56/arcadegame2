@@ -1,3 +1,9 @@
 body {
     text-align: center;
 }
+
+#heading {
+	position: relative;
+	top: -60px;
+
+}

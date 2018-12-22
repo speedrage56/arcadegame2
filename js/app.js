@@ -109,3 +109,18 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// animating heading
+let pos = -60;
+const getHeading = document.getElementById('heading');
+const moveHeading = () => {
+    if(pos === 0){
+        console.log(`pos is 0`);
+        clearInterval(move);}
+    else {    
+    console.log(`pos is ${pos}`);    
+    pos ++;
+    getHeading.style.top = `${pos}px`;
+    }
+}
+let move = setInterval(moveHeading, 10);
