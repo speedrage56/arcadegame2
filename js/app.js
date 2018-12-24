@@ -38,14 +38,19 @@ class Enemy {
 
 class Player{
     constructor(x,y){
-    this.player = 'images/Heart.png';
+    this.player = 'images/char-boy.png';
     this.x = 209;
     this.y = 405;
 }
 
 update(){
     // console.log(`player x is ${this.x} and player y is ${this.y}`);
-    if(this.y === -10){ console.log('Congrats!!');}
+    if(this.y === -10){ 
+        scoreCount ++;
+        player.x = 209;
+        player.y = 405;
+
+        console.log('Congrats!!');}
 }
 
 render(){
@@ -72,6 +77,8 @@ handleInput(evtObj){
 
 }};
 
+let scoreCount = 0;
+
 let checkCollisions = () => {
     // console.log('In checkCollisions');
  // console.log(`this.y is ${enemy2.y} and player.y is ${player.y}`);
@@ -82,7 +89,11 @@ let checkCollisions = () => {
             player.x <= enemy.x + 50 &&
             player.x >= enemy.x - 50){
         player.x = 209;
-        player.y = 405;    
+        player.y = 405;
+        if(scoreCount != 0){
+            scoreCount --;
+        }    
+
         console.log(`Collision!!`);
  }})}
 

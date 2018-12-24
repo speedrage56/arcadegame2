@@ -22,11 +22,14 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
+        score = doc.createElement('h2'),
         lastTime;
 
     canvas.width = 505;
     canvas.height = 606;
+    score.innerHTML = 'SCORE:';
     doc.body.appendChild(canvas);
+    doc.body.appendChild(score);
 
 
     /* This function serves as the kickoff point for the game loop itself
@@ -81,6 +84,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
+        score.innerHTML = `SCORE: ${scoreCount}`;
     }
 
     /* This is called by the update function and loops through all of the
