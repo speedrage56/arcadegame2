@@ -38,7 +38,7 @@ class Enemy {
 
 class Player{
     constructor(x,y){
-    this.player = 'images/char-boy.png';
+    this.player = 'images/Heart.png';
     this.x = 209;
     this.y = 405;
 }
@@ -118,9 +118,49 @@ const moveHeading = () => {
         console.log(`pos is 0`);
         clearInterval(move);}
     else {    
-    console.log(`pos is ${pos}`);    
+    // console.log(`pos is ${pos}`);    
     pos ++;
     getHeading.style.top = `${pos}px`;
     }
 }
 let move = setInterval(moveHeading, 10);
+
+
+// adding menu of characters to choose from 
+
+const charList = document.querySelectorAll('.char');
+// console.log(charList);
+const charUrls = ['images/char-boy.png', 'images/char-cat-girl.png', 'images/char-horn-girl.png', 'images/char-pink-girl.png', 'images/char-princess-girl.png'];
+
+let i=0;
+const charSelect = (evtObj) => {
+    const target = evtObj.target.parentElement.id;
+    switch (target) {
+        case 'one': 
+            player.player = `${charUrls[0]}`;
+            break;
+        case 'two':
+            player.player = `${charUrls[1]}`;
+            break;
+        case 'three' :
+            player.player = `${charUrls[2]}`;
+            break;
+        case 'four' :
+            player.player = `${charUrls[3]}`;
+            break;
+    }
+    // player.player = target;
+}
+charList.forEach((cval) =>{
+    cval.innerHTML = `<img src= ${charUrls[i]} alt="cat girl character">`;
+    cval.addEventListener('click', function(evtObj){
+        charSelect(evtObj);
+    })
+    i++;
+    });
+
+// choosing characters
+
+
+
+

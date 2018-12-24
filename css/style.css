@@ -7,3 +7,22 @@ body {
 	top: -60px;
 
 }
+
+#container {
+	float: left;
+	width: 101px;
+	height: 606px;
+	margin: 50px -202px 0 101px;
+}
+
+.char {
+	height: 101px;
+	width: 101px;
+}
+
+img{
+	height: 100%;
+	max-width: 100%;
+	display: block;
+	margin: auto;
+}
