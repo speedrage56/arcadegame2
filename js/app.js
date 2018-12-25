@@ -23,8 +23,6 @@ class Enemy {
     if(this.x > 505){
         this.x = -50;
     }
-    // console.log(`In enemy update loop`);
-
     }
 
 // Draw the enemy on the screen, required method for game
@@ -41,10 +39,16 @@ class Player{
     this.player = 'images/char-boy.png';
     this.x = 209;
     this.y = 405;
+    this.players = [
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+    ];
 }
 
 update(){
-    // console.log(`player x is ${this.x} and player y is ${this.y}`);
     if(this.y === -10){ 
         scoreCount ++;
         player.x = 209;
@@ -73,17 +77,13 @@ handleInput(evtObj){
             if(this.y != -10) {this.y -= 83;}
             break;
     }
-        // console.log(`x is ${this.x} and y is ${this.y}`);
-
 }};
 
 let scoreCount = 0;
 
 let checkCollisions = () => {
-    // console.log('In checkCollisions');
- // console.log(`this.y is ${enemy2.y} and player.y is ${player.y}`);
  allEnemies.forEach(enemy => {
-        // console.log(`enemy.y is ${enemy.y} and player.y is ${player.y}`);
+    
         if(player.y <= enemy.y + 42 &&
             player.y >= enemy.y - 42 &&
             player.x <= enemy.x + 50 &&
@@ -128,8 +128,7 @@ const moveHeading = () => {
     if(pos === 0){
         console.log(`pos is 0`);
         clearInterval(move);}
-    else {    
-    // console.log(`pos is ${pos}`);    
+    else {       
     pos ++;
     getHeading.style.top = `${pos}px`;
     }
@@ -140,30 +139,31 @@ let move = setInterval(moveHeading, 10);
 // adding menu of characters to choose from 
 
 const charList = document.querySelectorAll('.char');
-// console.log(charList);
-const charUrls = ['images/char-boy.png', 'images/char-cat-girl.png', 'images/char-horn-girl.png', 'images/char-pink-girl.png', 'images/char-princess-girl.png'];
 
 let i=0;
 const charSelect = (evtObj) => {
     const target = evtObj.target.parentElement.id;
     switch (target) {
         case 'one': 
-            player.player = `${charUrls[0]}`;
+            player.player = player.players[0];
             break;
         case 'two':
-            player.player = `${charUrls[1]}`;
+            player.player = player.players[1];
             break;
         case 'three' :
-            player.player = `${charUrls[2]}`;
+            player.player = player.players[2];
             break;
         case 'four' :
-            player.player = `${charUrls[3]}`;
+            player.player = player.players[3];
             break;
+        case 'five' :
+            player.player = player.players[4];
     }
-    // player.player = target;
+
 }
+
 charList.forEach((cval) =>{
-    cval.innerHTML = `<img src= ${charUrls[i]} alt="cat girl character">`;
+    cval.innerHTML = `<img src= ${player.players[i]} alt="cat girl character">`;
     cval.addEventListener('click', function(evtObj){
         charSelect(evtObj);
     })

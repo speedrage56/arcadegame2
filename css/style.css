@@ -8,6 +8,11 @@ body {
 
 }
 
+#outside{
+	width: 909px;
+	margin: auto;
+}
+
 #container {
 	float: left;
 	width: 101px;
